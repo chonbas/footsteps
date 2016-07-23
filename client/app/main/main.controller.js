@@ -6,7 +6,8 @@
 
     constructor($http) {
       this.$http = $http;
-      this.awesomeThings = [];
+      this.awesomeThings = [
+      ];
     }
 
     $onInit() {
