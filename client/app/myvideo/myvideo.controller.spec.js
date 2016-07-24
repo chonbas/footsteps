@@ -1,15 +1,15 @@
 'use strict';
 
-describe('Component: VideoComponent', function () {
+describe('Component: MyvideoComponent', function () {
 
   // load the controller's module
   beforeEach(module('footstepsApp'));
 
-  var VideoComponent;
+  var MyvideoComponent;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($componentController) {
-    VideoComponent = $componentController('video', {});
+    MyvideoComponent = $componentController('myvideo', {});
   }));
 
   it('should ...', function () {

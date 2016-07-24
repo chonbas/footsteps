@@ -17,6 +17,8 @@ header#banner.hero-unit
                 |  Terms & Conditions.
         button(type='submit').btn.btn-default
           | Submit
+        div(ng-controller="MainController")
+          label(ng-if="!testing") Hellllloooooooooooo
       h1.page-header Features:
       ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in $ctrl.awesomeThings')
         li

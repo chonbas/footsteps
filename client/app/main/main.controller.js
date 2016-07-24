@@ -22,5 +22,8 @@
     .component('main', {
       templateUrl: 'app/main/main.html',
       controller: MainController
+    })
+    .controller('MainController', function($scope) {
+      $scope.testing = true;
     });
 })();
