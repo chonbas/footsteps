@@ -102,5 +102,4 @@ angular.module('footstepsApp').controller('reportGraphController', ['$scope', '$
   }
 ];    
 
-    console.log($rootScope.graphData);
 }]);
