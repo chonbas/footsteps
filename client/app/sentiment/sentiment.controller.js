@@ -122,13 +122,26 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
                         //   $scope.sent.snapshot_count--;
                         //   return;
                         // }
-                        var snapshot = res.persons[0].expressions;
+                        var snapshot;
+                        if (res.persons[0].expressions){
+                          snapshot = res.persons[0].expressions;
+                        } else {
+                          snapshot = {'sadness':{'value':50},
+                                                  'neutral':{'value':50},
+                                                  'disgust':{'value':50},
+                                                  'anger':{'value':50},
+                                                  'surprise':{'value':50},
+                                                  'fear':{'value':50},
+                                                  'happiness':{'value':50}
+                                                };
+
+                          console.log(res.persons[0].expressions);
+                        }
                         $scope.sent.emotions.push(snapshot);
                         if ($scope.sent.display_video.ended){
                             $scope.sent.getReport();
                         }
                     }
-                      
                       // }
                   },function(err){
 
