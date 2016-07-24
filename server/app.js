@@ -4,9 +4,12 @@
 
 'use strict';
 
-import express from 'express';
-import config from './config/environment';
-import http from 'http';
+//import express from 'express';
+var express = require('express');
+//import config from './config/environment';
+var config = require('./config/environment');
+//import http from 'http';
+var http = require('http');
 // import bodyParser from 'body-parser';
 
 // Setup server
