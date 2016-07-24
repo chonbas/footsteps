@@ -29,11 +29,19 @@
   }
 }
 
+.selected-class {
+  font-size: 1.5em;
+  width: 45%;
+}
+
 .side-img img {
   max-height: 200px;
   max-width: 300px;
-  margin-top: -18%;
-  margin-left: 55%;
-  float: right;
-  margin-right: 2.3em;
+  display: inline-block;
+  float: left;
+  margin-left: 53%;
+  margin-top: -10%;
+  //margin-left: 55%;
+  //float: right;
+  //margin-right: 2.3em;
 }
