@@ -26,6 +26,7 @@ export function index(req, res) {
     console.log("here");
     request(options, function (error, response, body) {
       if (error) return res.json({error: error});
+      console.log(body);
       res.json(JSON.parse(body));
     });
   });
