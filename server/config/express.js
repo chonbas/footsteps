@@ -4,30 +4,18 @@
 
 'use strict';
 
-//import express from 'express';
-var express = require('express');
-//import favicon from 'serve-favicon';
-var favicon = require('serve-favicon');
-//import morgan from 'morgan';
-var morgan = require('morgan');
-//import compression from 'compression';
-var compression = require('compression');
-//import bodyParser from 'body-parser';
-var bodyParser = require('body-parser');
-//import methodOverride from 'method-override';
-var methodOverride = require('method-override');
-//import cookieParser from 'cookie-parser';
-var cookieParser = require('cookie-parser');
-//import errorHandler from 'errorhandler';
-var errorHandler = require('errorhandler');
-//import path from 'path';
-var path = require('path');
-//import lusca from 'lusca';
-var lusca = require('lusca');
-//import config from './environment';
-var config = require('./environment');
-//import session from 'express-session';
-var session = require('express-session');
+import express from 'express';
+import favicon from 'serve-favicon';
+import morgan from 'morgan';
+import compression from 'compression';
+import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
+import cookieParser from 'cookie-parser';
+import errorHandler from 'errorhandler';
+import path from 'path';
+import lusca from 'lusca';
+import config from './environment';
+import session from 'express-session';
 
 export default function(app) {
   var env = app.get('env');
