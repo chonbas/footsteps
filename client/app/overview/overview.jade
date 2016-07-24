@@ -1,14 +1,14 @@
-h1 An Overview
-
-ul
-  li
-    Step 1
-  li
-    Step 2
-  li
-    Step 3
-
-a(href="/reflection")
-  button.btn.btn-default.next(type='submit')
-    | Next
-    i(class="fa fa-arrow-right")
+.container#overview-container(ng-controller="overviewCtrl")
+  ul.overview-list
+    li.overview-item(ng-click="selected = 0")
+      | Blah {{action.name}} {{selected}}
+    li.overview-item(ng-click="selected = 1")
+      | Hi {{action.name}} {{selected}}
+    li.overview-item(ng-click="selected = 2")
+      | World {{action.name}} {{selected}}
+  .side-img
+    img(ng-src="{{actions[selected].img_url}}")
+  a(href="/myvideo")
+    button.btn.btn-default.next(type='submit')
+      | Next
+      i(class="fa fa-arrow-right")
