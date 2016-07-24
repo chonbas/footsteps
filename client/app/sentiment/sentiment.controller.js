@@ -3,6 +3,7 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
       $scope.sent = {};
       $scope.sent.width = 320;    // We will scale the photo width to this
       $scope.sent.height = 0;     // This will be computed based on the input stream
+      $scope.sent.Snapshot = $resource('/api/snapshots');
 
       // |streaming| indicates whether or not we're currently streaming
       // video from the camera. Obviously, we start at false.
@@ -94,9 +95,9 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
           $scope.sent.canvas.height = $scope.sent.height;
           context.drawImage($scope.sent.video, 0, 0, $scope.sent.width, $scope.sent.height);
         
-          var data = $scope.sent.canvas.toDataURL('image/png');
-          console.log(data);
+          var data = $scope.sent.canvas.toDataURL('image/png', 0.5);
           $scope.sent.photo.setAttribute('src', data);
+          $scope.sent.Snapshot.save({'image':data});
         } else {
           $scope.sent.clearphoto();
         }
