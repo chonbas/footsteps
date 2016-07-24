@@ -22,6 +22,16 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import 'reflection/reflection';
 @import 'resources/resources';
 @import 'sentimenttest/sentimenttest';
+@import 'video/video';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
 /* endinject */
+
+button .fa-arrow-right {
+  padding-left: 8px;
+}
+
+.next {
+  float: right;
+  margin: 0.5em 1em;
+}

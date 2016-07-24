@@ -4,23 +4,31 @@ header#banner.hero-unit
     p.lead  An interactive empathy experience.
     // img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
 
-.container
+.container()
   .row
     .col-lg-12
-      form
+      form(ng-submit='toOverview()', ng-controller='SubmitController')
         .form-group
           .checkbox
             label
-              input(type='checkbox')
-              |  I agree to the
-              a(href="javascript:void(0);")
-                |  Terms & Conditions.
-        button(type='submit').btn.btn-default
-          | Submit
-        div(ng-controller="MainController")
-          label(ng-if="!testing") Hellllloooooooooooo
-      h1.page-header Features:
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in $ctrl.awesomeThings')
-        li
-          a(href='#', uib-tooltip='{{thing.info}}')
-            | {{thing.name}}
+                  input(type='checkbox', ng-model='checked', ng-init='checked=false')
+                  |  I agree to the
+                  a(href="javascript:void(0);")
+                    |  Terms & Conditions.
+                  br
+        br
+        button.btn.btn-default(type='submit', ng-disabled="!checked")
+            | Submit
+      // form(ng-submit='submit()', ng-controller='ExampleController')
+      //   label(ng-if='x') Hi
+      //   | Enter text and hit enter:
+      //   input(type='text', ng-model='text', name='text')
+      //   input#submit(type='submit', value='Submit')
+      //   pre
+      //     | list={{list}}
+
+      // h1.page-header Features:
+      // ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in $ctrl.awesomeThings')
+      //   li
+      //     a(href='#', uib-tooltip='{{thing.info}}')
+      //       | {{thing.name}}
