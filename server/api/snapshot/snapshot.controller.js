@@ -18,10 +18,10 @@ export function index(req, res) {
       method: 'POST',
       url: 'http://api.sightcorp.com/api/detect/',
       formData: 
-      { client_id: 'c900cd6d5cff4b6db8473600e0b62152',
-        // client_id: '0b6646bbe77245df9f4216e2d7e6e658',
-        app_key: 'ff06c8d1ae0e44aba2b0bb414a845024',
-        // app_key: 'd41e229c1ce34bf895b6a17df2dc9525',
+      { //client_id: 'c900cd6d5cff4b6db8473600e0b62152',
+        client_id: '0b6646bbe77245df9f4216e2d7e6e658',
+        //app_key: 'ff06c8d1ae0e44aba2b0bb414a845024',
+        app_key: 'd41e229c1ce34bf895b6a17df2dc9525',
         img: fs.createReadStream("out.png")
       } 
     };

@@ -13,6 +13,9 @@ angular.module('footstepsApp')
     templateUrl: 'app/reflection/reflection.html',
     controller: ReflectionComponent,
     controllerAs: 'reflectionCtrl'
+  })
+  .controller('reflectionCtrl', function($scope) {
+  
   });
 
 })();
