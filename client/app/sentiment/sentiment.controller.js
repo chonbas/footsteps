@@ -113,36 +113,26 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
               $scope.sent.Snapshot.save({'image':data})
                   .$promise.then(function(res){
                     $scope.sent.snapshot_count++;
-                    if (!res.error_code){
-                      // console.log(res);
-                        //need to add code to stop player when no people in frame
-                        // if (res.persons.length === 0){
-                        //   $scope.sent.display_video.pause();
-                        //   $scope.sent.playVideo = false;
-                        //   $scope.sent.snapshot_count--;
-                        //   return;
-                        // }
-                        var snapshot;
-                        if (res.persons[0].expressions){
-                          snapshot = res.persons[0].expressions;
-                        } else {
-                          snapshot = {'sadness':{'value':50},
-                                                  'neutral':{'value':50},
-                                                  'disgust':{'value':50},
-                                                  'anger':{'value':50},
-                                                  'surprise':{'value':50},
-                                                  'fear':{'value':50},
-                                                  'happiness':{'value':50}
-                                                };
 
-                          console.log(res.persons[0].expressions);
-                        }
-                        $scope.sent.emotions.push(snapshot);
-                        if ($scope.sent.display_video.ended){
-                            $scope.sent.getReport();
-                        }
+                    //DEFAULT Snap shot
+                    //This gets sent if rate limitting error and/or no face recognized
+                    var snapshot = {'sadness':{'value':0},
+                                                  'neutral':{'value':0},
+                                                  'disgust':{'value':0},
+                                                  'anger':{'value':0},
+                                                  'surprise':{'value':0},
+                                                  'fear':{'value':0},
+                                                  'happiness':{'value':0}
+                                                };
+                    if (!res.error_code){
+                      if (res.persons.length > 0){
+                        snapshot = res.persons[0].expressions;
+                      }
+                    } 
+                    $scope.sent.emotions.push(snapshot);
+                    if ($scope.sent.snapshot_count == 11){
+                        $scope.sent.getReport();
                     }
-                      // }
                   },function(err){
 
                   });
@@ -161,7 +151,7 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
           .$promise.then(
               function(res){
                   //aray of 5 objects with key 'time' and key 'score'
-                  console.log("response" + res);
+                  console.log(res);
               }
             ,function(err){
 
