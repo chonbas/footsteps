@@ -7,7 +7,7 @@
 
 // Gets a list of Reports
 export function index(req, res) {
-  var baselineData = [
+  var baselineEmotions = [
   {
     "sadness": 51.33333333,
     "neutral": 0,
@@ -164,15 +164,18 @@ export function index(req, res) {
 
   }
 
-  var userData = req.body.data;
-  if(baselineData.length != userData.length) {
+  var userEmotions = req.body.emotions;
+  console.log("emotions = " + JSON.stringify(userEmotions));
+  if(baselineEmotions.length != userEmotions.length) {
     return res.json({error: "UserData must have " + 
-                            baselineData.length + " elements"});
+                            baselineEmotions.length + " elements"});
   }
 
-  var baselineScores = calculateScores(baselineData);
-  var userScores = calculateScores(req.body.emotions);
+  var baselineScores = calculateScores(baselineEmotions);
+  var userScores = calculateScores(userEmotions);
   var differences = calculateDifferences(baselineScores, userScores);
 
-  res.json(buildReport(differences));
+  console.log("sending back: " + JSON.stringify(buildReport(differences)));
+
+  res.json({report: buildReport(differences)});
 }

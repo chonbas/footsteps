@@ -148,7 +148,7 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
           .$promise.then(
               function(res){
                   //aray of 5 objects with key 'time' and key 'score'
-
+                  console.log("response" + res);
               }
             ,function(err){
 
