@@ -17,7 +17,7 @@ angular.module('footstepsApp')
   .controller('overviewCtrl', function($scope){
     $scope.selected = 0;
     $scope.actions = [{name:'Talking to TA', img_url:'assets/images/ta.png'},
-      {name:'Walking Home', img_url:'assets/images/yeoman.png'}, {name:'Interviewing for job', img_url:'assets/images/play-button.png'}];
+      {name:'Walking Home', img_url:'assets/images/walking.jpg'}, {name:'Interviewing for job', img_url:'assets/images/interview.jpg'}];
   });
 
 })();
