@@ -30,7 +30,7 @@
 .btn {
   // TODO -ac Add some consistent interface animations, + a basic visual language
   // incorporating "footsteps" (logo! choices for the team :)
-  transition: background-color 0.3s ease-in;
+  transition: background-color 0.15s ease-in;
 
   &[disabled] {
     cursor: not-allowed;
