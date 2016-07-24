@@ -110,10 +110,10 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
                     var snapshot = {'sadness':{'value':0},
                                                   'neutral':{'value':0},
                                                   'disgust':{'value':0},
-                                                  'anger':{'value':0},
+                                                  'anger':{'value':Math.floor(Math.random() * (50 - 25)) + 25},
                                                   'surprise':{'value':0},
-                                                  'fear':{'value':0},
-                                                  'happiness':{'value':0}
+                                                  'fear':{'value':10},
+                                                  'happiness':{'value':2}
                                                 };
                     if (!res.error_code){
                       if (res.persons.length > 0){
@@ -143,6 +143,8 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
                   res.report.sort(function(a,b){
                     return parseFloat(b.score) - parseFloat(a.score);
                   });
+                  $rootScope.graphData.baseline_url = res.baselineMessage.url;
+                  $rootScope.graphData.user_url = res.userMessage.url;
                   $rootScope.graphData.report = res.report;
                   $rootScope.graphData.user_emotions = $scope.sent.emotions;
                   $rootScope.graphData.url = res.graph;

@@ -101,14 +101,15 @@ angular.module('footstepsApp').controller('reportGraphController', ['$scope', '$
                                 }
                               ];
                             
-        // $scope.report.startup = function(){
-        //   var base_img_url = $rootScope.graphData.baseline_url + '.jpg';
-        //   var user_img_url = $rootScope.graphData.user_url + '.jpg';
-        //   var embedBaselineImage = document.getElementById('basegraph');
-        //   var embedUserImage = document.getElementById('usergraph');
-        //   embedImage.setAttribute('src', img_url);
-        // };
-        // $scope.report.startup();
+        $scope.report.startup = function(){
+          var base_img_url = $rootScope.graphData.baseline_url + '.jpg';
+          var user_img_url = $rootScope.graphData.user_url + '.jpg';
+          var embedBaselineImage = document.getElementById('basegraph');
+          var embedUserImage = document.getElementById('usergraph');
+          embedBaselineImage.setAttribute('src', base_img_url);
+          embedUserImage.setAttribute('src', user_img_url);
+        };
+        $scope.report.startup();
         $scope.report.report = [];
         $scope.report.report = $rootScope.graphData.report;
         $scope.report.user_emotions = $rootScope.graphData.user_emotions;
