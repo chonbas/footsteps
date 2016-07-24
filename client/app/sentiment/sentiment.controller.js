@@ -1,4 +1,4 @@
-angular.module('footstepsApp').controller('sentimentController', ['$scope', '$rootScope', '$resource',
+angular.module('footstepsApp').controller('sentimentController', ['$scope','$location', '$rootScope', '$resource', 
     function ($scope, $rootScope, $resource, $location) {
       $scope.sent = {};
       $scope.sent.width = 320;    // We will scale the photo width to this
@@ -151,7 +151,8 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
           .$promise.then(
               function(res){
                   //aray of 5 objects with key 'time' and key 'score'
-                  console.log(res);
+                  $rootScope.graphData = res.report;
+                  $location.path('/reflection');
               }
             ,function(err){
 
