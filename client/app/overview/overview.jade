@@ -1,10 +1,10 @@
 .container#overview-container(ng-controller="overviewCtrl")
   ul.overview-list
-    li.overview-item(ng-click="selected = 0", ng-class="{selectedClass: 'selected' == 0}")
+    li.overview-item(ng-click="selected = 0", ng-class="{'selected-class' : selected == 0}")
       | Talking to TA
-    li.overview-item(ng-click="selected = 1", ng-class="{selectedClass: 'selected' == 1}")
+    li.overview-item(ng-click="selected = 1", ng-class="{'selected-class' : selected == 1}")
       | Walking Home
-    li.overview-item(ng-click="selected = 2", ng-class="{selectedClass: 'selected' == 2}")
+    li.overview-item(ng-click="selected = 2", ng-class="{'selected-class' : selected == 2}")
       | Interviewing for Job
   .side-img
     img(ng-src="{{actions[selected].img_url}}")
