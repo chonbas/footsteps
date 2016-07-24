@@ -7,7 +7,7 @@
 
 // Gets a list of Reports
 export function index(req, res) {
-  var plotly = require('plotly')("fidelss", "xab1vpca34");
+  var plotly = require('plotly')("linda.ortega2013", "az63ili5az");
   var baselineEmotions = [
   {
     "sadness": 51.33333333,
