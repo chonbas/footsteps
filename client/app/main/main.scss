@@ -25,3 +25,16 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+// Lol, also just fix the goddamn spacing on all the pages :(
+.btn {
+  // TODO -ac Add some consistent interface animations, + a basic visual language
+  // incorporating "footsteps" (logo! choices for the team :)
+  transition: background-color 0.3s ease-in;
+
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    background-color: #ddd !important;
+  }
+}
