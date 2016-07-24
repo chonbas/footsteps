@@ -1,3 +1,27 @@
-#main-video {
+#main-video-container {
   width: 100%;
+  position: relative;
+}
+
+#main-video {
+  width:100%;
+}
+
+.play-button {
+  position: absolute;
+  $size: 100px;
+  height: $size;
+  width: $size;
+  top: calc(50% - #{$size});
+  left: calc(50% - #{$size});
+  background-image: url('/assets/images/play-button.png');
+  background-repeat: no-repeat;
+  background-size: $size;
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }

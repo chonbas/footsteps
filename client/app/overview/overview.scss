@@ -1,0 +1,47 @@
+// #overview-container {
+//   background-image: url('/assets/images/ta.png');
+// }
+
+.overview-list {
+  //position: relative;
+  list-style: none;
+}
+
+.overview-item {
+  &::before {
+    //content: ' ';
+  }
+  border-bottom: 1px solid black;
+  font-size: 1.2em;
+  $timing: 0.4s;
+  $t-function: ease-in-out;
+  transition:
+    font-size $timing $t-function,
+    width $timing $t-function;
+  width: 35%;
+  @at-root &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  &:hover {
+    font-size: 1.5em;
+    width: 45%;
+  }
+}
+
+.selected-class {
+  font-size: 1.5em;
+  width: 45%;
+}
+
+.side-img img {
+  max-height: 200px;
+  max-width: 300px;
+  display: inline-block;
+  float: left;
+  margin-left: 53%;
+  margin-top: -10%;
+  //margin-left: 55%;
+  //float: right;
+  //margin-right: 2.3em;
+}

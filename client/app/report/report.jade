@@ -1,1 +1,7 @@
-div(ng-controller="reportGraphController") This is the report view.
+div(class="container", ng-controller="reportGraphController")
+    h1(class="center-block") Report:
+    h3(class="center-block") Baseline:
+    img#basegraph
+    h3(class="center-block") Your Graph:
+    img#usergraph
+    div#reportView

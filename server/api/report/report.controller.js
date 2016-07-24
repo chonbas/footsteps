@@ -7,6 +7,7 @@
 
 // Gets a list of Reports
 export function index(req, res) {
+  var plotly = require('plotly')("fidelss", "xab1vpca34");
   var baselineEmotions = [
   {
     "sadness": 51.33333333,
@@ -158,10 +159,68 @@ export function index(req, res) {
 
     return resultsScores.map(function(r, i) {
       return {
-        time: resultsIndexes[i], score: resultsIndexes[i]
+        time: resultsIndexes[i], score: resultsScores[i]
       };
     });
 
+  }
+
+  function buildTraces(emotions) {
+    var keys = ["sadness", "neutral", "disgust", "anger", "surprise", "fear", "happiness"];
+    var colors = ["rgb(164, 194, 244)", "rgb(255, 217, 102)", "rgb(234, 153, 153)", 
+                  "rgb(120, 230, 195)", "rgb(142, 60, 120)", "rgb(234, 124, 100)"];
+    var traces = [];
+    for (var i = 0; i < keys.length; i++) {
+      console.log("i = " + i + ", k[i] " + keys[i]);
+      var k = keys[i];
+      var color = colors[i];
+      var x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+      var y = emotions.map(function(e) { return e[k]; });
+      console.log("x = " + x + ", y = " + y);
+      
+      traces.push({
+        x: x,
+        y: y,
+        mode: "markers",
+        name: k,
+        marker: {
+          color: color,
+          size: 12,
+          line: {
+            color: "white",
+            width: 0.5
+          }
+        },
+        type: "scatter"
+      });
+    }
+
+    console.log("traces = " + traces);
+    return traces;
+  }
+
+  function plotGraph(traces, graphName, callback) {
+    console.log("TRACES = " + JSON.stringify(traces));
+    console.log("---------");
+    var layout = {
+      title: "Emotions Detection",
+      xaxis: {
+        title: "Time",
+        showgrid: false,
+        zeroline: false
+      },
+      yaxis: {
+        title: "Confidence",
+        showline: false
+      }
+    };
+
+    var graphOptions = {layout: layout, filename: graphName, fileopt: "overwrite"};
+    plotly.plot(traces, graphOptions, function(err, msg) {
+      if(err) return callback(err);
+      
+      callback(null, msg);
+    });
   }
 
   if(!req.body.emotions) {
@@ -182,11 +241,33 @@ export function index(req, res) {
     return result;
   });
 
+  var baselineTraces = buildTraces(baselineEmotions);
+  var userTraces = buildTraces(userEmotions);
   var baselineScores = calculateScores(baselineEmotions);
   var userScores = calculateScores(userEmotions);
   var differences = calculateDifferences(baselineScores, userScores);
 
-  console.log("sending back: " + JSON.stringify(buildReport(differences)));
+  plotGraph(baselineTraces, "baseline-graph", function(err, baselineMsg) {
+    console.log("here1, err = " + JSON.stringify(err));
+    if(err) return res.json({error: err});
 
-  res.json({report: buildReport(differences)});
+    plotGraph(userTraces, "user-graph", function(err, userMsg) {
+      console.log("here2, err = " + JSON.stringify(err));
+      if(err) return res.json({error: err});
+
+      console.log("Sending back: " + JSON.stringify({
+        baselineMessage: baselineMsg,
+        userMessage: userMsg,
+        report: buildReport(differences)
+      }));
+
+      res.json({
+        baselineMessage: baselineMsg,
+        userMessage: userMsg,
+        report: buildReport(differences)
+      });
+
+    });
+  });
+
 }

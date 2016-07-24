@@ -1,3 +1,14 @@
+// Variables
+$dark: #2C2733;
+$white: #DDD;
+$hover-dark: #c19747;
+$accent: #81D1CC;
+
+
+* {
+  font-size: 16px;
+}
+
 .thing-form {
   margin: 20px 0;
 }
@@ -19,22 +30,76 @@
   color: #F5F5F5;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
+  background: $accent;
 }
 
-.navbar-text {
-  margin-left: 15px;
+a {
+  &:hover, &:focus, &:active {
+    text-decoration: none !important;
+  }
+}
+
+#landing-form {
+  font-size: 1.2em;
+}
+
+#tos{
+  color: $hover-dark;
+  &:hover {
+    color: $dark;
+  }
+}
+
+// Navbar Edits
+.navbar-default {
+  .navbar-brand {
+    font-size: 1.5em;
+    color: $white;
+    &:hover {
+      color: $hover-dark;
+    }
+  }
+}
+.navbar {
+  border: none;
+}
+
+.navbar, footer.footer, .no-js {
+  background-color: $dark;
 }
 
 // Lol, also just fix the goddamn spacing on all the pages :(
 .btn {
-  // TODO -ac Add some consistent interface animations, + a basic visual language
-  // incorporating "footsteps" (logo! choices for the team :)
+  border-radius: 0;
+  border: none !important;
+  background-color: $accent !important;
+  color: white !important;
   transition: background-color 0.15s ease-in;
+  cursor: pointer;
+  padding: 6px 1.2em;
+
+  &:hover {
+    background-color: #70B5B1 !important;
+  }
 
   &[disabled] {
     cursor: not-allowed;
     pointer-events: all !important;
     background-color: #ddd !important;
+    color: darkgray !important;
   }
+
+}
+
+button .fa-arrow-right {
+  padding-left: 8px;
+}
+
+.next {
+  float: right;
+  margin: 2.3em;
+}
+
+.centered {
+    text-align: center;
 }
