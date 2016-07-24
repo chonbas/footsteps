@@ -7,7 +7,7 @@
 import express from 'express';
 import config from './config/environment';
 import http from 'http';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 
 // Setup server
 // var bodyParser = require('body-parser');
