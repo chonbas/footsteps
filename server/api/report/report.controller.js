@@ -164,12 +164,23 @@ export function index(req, res) {
 
   }
 
+  if(!req.body.emotions) {
+    return res.json({error: "no emotions.."});
+  }
   var userEmotions = req.body.emotions;
   console.log("emotions = " + JSON.stringify(userEmotions));
   if(baselineEmotions.length != userEmotions.length) {
     return res.json({error: "UserData must have " + 
                             baselineEmotions.length + " elements"});
   }
+
+  userEmotions = userEmotions.map(function(e) {
+    var result = {};
+    for(var k in e) {
+      result[k] = e[k].value;
+    }
+    return result;
+  });
 
   var baselineScores = calculateScores(baselineEmotions);
   var userScores = calculateScores(userEmotions);
