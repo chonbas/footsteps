@@ -159,7 +159,7 @@ export function index(req, res) {
 
     return resultsScores.map(function(r, i) {
       return {
-        time: resultsIndexes[i], score: resultsIndexes[i]
+        time: resultsIndexes[i], score: resultsScores[i]
       };
     });
 

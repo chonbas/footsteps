@@ -133,15 +133,19 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope', '$ro
         }        
       };
 
-
       //Once we have taken and processed all snapshots, send back to server for comparison 
       // against baseline for video
       $scope.sent.getReport = function(){
         $scope.sent.Result.save({'emotions':$scope.sent.emotions})
           .$promise.then(
               function(res){
-                  //aray of 5 objects with key 'time' and key 'score'
-                  $rootScope.graphData = res.report;
+                  $rootScope.graphData = {};
+                  res.report.sort(function(a,b){
+                    return parseFloat(b.score) - parseFloat(a.score);
+                  });
+                  $rootScope.graphData.report = res.report;
+                  $rootScope.graphData.user_emotions = $scope.sent.emotions;
+                  $rootScope.graphData.url = res.graph;
                   $location.path('/report');
               }
             ,function(err){
