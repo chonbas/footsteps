@@ -18,7 +18,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 /* inject:scss */
 @import 'main/main';
 @import 'overview/overview';
+@import 'reflection/reflection';
+@import 'resources/resources';
 @import 'sentimenttest/sentimenttest';
+@import 'video/video';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
 /* endinject */
