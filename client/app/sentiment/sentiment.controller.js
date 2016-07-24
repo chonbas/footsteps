@@ -1,4 +1,4 @@
-angular.module('footstepsApp').controller('sentimentController', ['$scope','$location', '$rootScope', '$resource', 
+angular.module('footstepsApp').controller('sentimentController', ['$scope', '$rootScope', '$resource','$location', 
     function ($scope, $rootScope, $resource, $location) {
       $scope.sent = {};
       $scope.sent.width = 320;    // We will scale the photo width to this
@@ -10,18 +10,13 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope','$loc
       $scope.sent.snapshot_count = 0;
       // |streaming| indicates whether or not we're currently streaming
       // video from the camera. Obviously, we start at false.
-
       $scope.sent.streaming = false;
 
-      // The various HTML elements we need to configure or control. These
-      // will be set by the startup() function.
-
       $scope.sent.user_video = document.getElementById('user_video');
-      $scope.sent.display_video = document.getElementById('display_video')
+      $scope.sent.display_video = document.getElementById('main-video');
       $scope.sent.canvas = document.getElementById('canvas');
       $scope.sent.photo = document.getElementById('photo');
-      $scope.sent.startbutton = document.getElementById('startbutton');
-      $scope.sent.startvideoBtn = document.getElementById('startvideo');
+      $scope.sent.startvideoBtn = document.getElementById('startVideoBtn');
 
       $scope.sent.startup = function() {
         navigator.getMedia = ( navigator.getUserMedia ||
@@ -67,15 +62,11 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope','$loc
           }
         }, false);
 
-        $scope.sent.startbutton.addEventListener('click', function(ev){
-          $scope.sent.takepicture();
-          ev.preventDefault();
-        }, false);
-
         $scope.sent.startvideoBtn.addEventListener('click', function(ev){
           $scope.sent.playVideo = true;
           $scope.sent.display_video.play();
           $scope.sent.takepicture();
+          $scope.sent.startvideoBtn.setAttribute('style','display:none;');
           ev.preventDefault();
         }, false);
         $scope.sent.clearphoto();
@@ -146,13 +137,12 @@ angular.module('footstepsApp').controller('sentimentController', ['$scope','$loc
       //Once we have taken and processed all snapshots, send back to server for comparison 
       // against baseline for video
       $scope.sent.getReport = function(){
-        console.log($scope.sent.emotions);
         $scope.sent.Result.save({'emotions':$scope.sent.emotions})
           .$promise.then(
               function(res){
                   //aray of 5 objects with key 'time' and key 'score'
                   $rootScope.graphData = res.report;
-                  $location.path('/reflection');
+                  $location.path('/report');
               }
             ,function(err){
 
